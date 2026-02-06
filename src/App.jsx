@@ -5,11 +5,14 @@ import CardList from "./components/CardList";
 import { Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 
 export default function App() {
   const [categoryProducts, setCategoryProducts] = useState([]);
 
   const [products, setProducts] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   async function getDataCategories() {
     const url = "https://api.escuelajs.co/api/v1/categories";
@@ -39,6 +42,8 @@ export default function App() {
       const result = await response.json();
       // isi state categoryProducts dengan data dari Api ( result ) 
       setProducts(result.slice(0,4));
+      // mengganti loading state jadi false untuk menghilangkan spiner 
+      setLoading(false);
     } catch (error) {
       console.error(error.message);
     }
@@ -49,6 +54,14 @@ export default function App() {
     getDataCategories();
     getDataProducts();
   }, []);
+
+  if (loading == true ) {
+    return (
+      <div className="block mx-auto mt-50 w-100">
+        <Spinner /> Sedang memuat data...
+      </div>
+    );
+  }
 
   return (
     <>

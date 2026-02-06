@@ -13,6 +13,7 @@ import {
 } from "flowbite-react";
 import imgLogo from "../assets/shop-icon.png";
 import { BsCart4 } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function NavbarComp() {
   return (
@@ -34,7 +35,9 @@ export default function NavbarComp() {
             <span className="block text-sm">Bonnie Green</span>
             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
           </DropdownHeader>
+          <Link to="/profile">
           <DropdownItem>Dashboard</DropdownItem>
+          </Link>
           <DropdownItem>Settings</DropdownItem>
           <DropdownItem>Earnings</DropdownItem>
           <DropdownDivider />
